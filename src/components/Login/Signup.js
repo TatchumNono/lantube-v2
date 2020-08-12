@@ -3,8 +3,6 @@ import Avatar1 from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -22,6 +20,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -63,7 +67,7 @@ function Copyright() {
   );
 }
 
-function Signup() {
+function SignUp() {
   const [username, setUsername] = React.useState("");
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -71,6 +75,9 @@ function Signup() {
   const [preview, setPreview] = React.useState(null);
   const [values, setValues] = React.useState(false);
   const [values1, setValues1] = React.useState(false);
+  const [openSuccess, setOpenSuccess] = React.useState(false);
+  const [openFailure, setOpenFailure] = React.useState(false);
+  const [responses, setResponses] = React.useState({ success: "", error: "" });
 
   const redirect = useHistory();
 
@@ -80,7 +87,7 @@ function Signup() {
 
   const onCrop = (preview) => {
     setPreview(preview);
-    console.log(preview);
+    //console.log(preview);
   };
 
   const onBeforeFileLoad = (elem) => {
@@ -104,10 +111,19 @@ function Signup() {
     event.preventDefault();
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSuccess(false);
+    setOpenFailure(false);
+  };
+
   const classes = useStyles();
 
   const onSignUp = (e) => {
     e.preventDefault();
+
     //const user = new FormData();
     //user.append("profileImage", preview);
     //user.append("username", username);
@@ -128,10 +144,16 @@ function Signup() {
         .post("http://localhost:4000/user/signup", user)
         .then((res) => {
           console.log(res.data);
-          redirect.push("/");
+          setResponses({ success: res.data.message });
+          setOpenSuccess(true);
+          setTimeout(() => {
+            redirect.push("/");
+          }, 2000);
         })
         .catch((error) => {
           console.log(error.message);
+          setOpenFailure(true);
+          setResponses({ error: error.message });
         });
     }
   };
@@ -265,12 +287,28 @@ function Signup() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="/" variant="body2">
+              <Link href="/SignIn" variant="body2">
                 Login
               </Link>
             </Grid>
           </Grid>
         </form>
+        <Snackbar
+          open={openSuccess}
+          autoHideDuration={6000}
+          onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            {responses.success}
+          </Alert>
+        </Snackbar>
+        <Snackbar
+          open={openFailure}
+          autoHideDuration={6000}
+          onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error">
+            {responses.error}
+          </Alert>
+        </Snackbar>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -279,4 +317,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;
