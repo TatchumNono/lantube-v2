@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Dropzone from 'react-dropzone';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -12,7 +11,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { UserContext } from '../../contexts/userContext';
+import { useHistory } from 'react-router-dom';
+import TransModal from './Progress';
 import axios from 'axios';
+import './style.css';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,20 +44,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SubUpload() {
   const classes = useStyles();
+  const history = useHistory();
   const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
   const [file, setFile] = useState([]);
   const { cookies } = useContext(UserContext);
   const [token, setToken] = useState('');
+  const [buttonS, setButton] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [comment, setComment] = useState('Click here select a file!');
+  const [openProgressModal, setOpenProgressModal] = useState(false);
 
-  const onDrop = (file) => {
-    console.log(file);
-    setFile(file[0]);
-    setTitle(file[0].name);
-    setComment(file[0].name);
+  const handleProgressModalClose = () => {
+    setOpenProgressModal(false);
+  };
+
+  const onDrop = (e) => {
+    setFile(e.target.files[0]);
+    setTitle(e.target.files[0].name);
+    setComment(e.target.files[0].name);
     setToken(cookies.userData.token);
   };
+
+  if (progress === 100) {
+    console.log('Uploaded');
+  }
 
   const fileUpload = (e) => {
     e.preventDefault();
@@ -65,18 +78,40 @@ export default function SubUpload() {
     fileData.append('category', category);
     fileData.append('file', file);
 
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    axios
-      .post('http://localhost:4000/file/upload', fileData, config)
-      .then((res) => {
-        console.log(res.data);
+    if (title && category === '') {
+      setButton(false);
+    } else {
+      setButton(true);
+      axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+        data: fileData,
+        url: 'http://localhost:4000/file/upload',
+        onUploadProgress: (progressEvent) => {
+          let upload = Math.round(
+            (progressEvent.loaded / progressEvent.total) * 100
+          );
+          setProgress(upload);
+          setOpenProgressModal(true);
+        },
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+        .then((res) => {
+          console.log(res.data);
+          setTimeout(() => {
+            handleProgressModalClose();
+            setTitle('');
+            setCategory('');
+            setFile([]);
+            history.push('/');
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
   };
 
   return (
@@ -89,24 +124,20 @@ export default function SubUpload() {
         <Grid container justify="center" alignItems="center">
           <Grid item xs={12}>
             <form onSubmit={fileUpload} className={classes.form} noValidate>
-              <Dropzone onDrop={onDrop} multiple={false} maxSize={8000000}>
-                {({ getRootProps, getInputProps }) => (
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '240px',
-                      border: '1px solid lightgray',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      background: '#f2f2f2',
-                    }}
-                    {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    {comment}
-                  </div>
-                )}
-              </Dropzone>
+              <div className="upload-container">
+                <input
+                  type="file"
+                  id="file-browser-input"
+                  name="file"
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onChange={onDrop}
+                  required
+                />
+                <div className="helper-text">{comment}</div>
+              </div>
               <br />
               <TextField
                 //id="standard-basic"
@@ -145,6 +176,7 @@ export default function SubUpload() {
               <Button
                 type="submit"
                 fullWidth
+                disabled={buttonS}
                 variant="contained"
                 color="primary"
                 className={classes.submit}>
@@ -154,6 +186,12 @@ export default function SubUpload() {
           </Grid>
         </Grid>
       </div>
+      <TransModal
+        fOpen={openProgressModal}
+        fClose={handleProgressModalClose}
+        progressValue={progress}
+        title={title}
+      />
     </Container>
   );
 }

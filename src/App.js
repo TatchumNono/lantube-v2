@@ -1,7 +1,7 @@
 import React from 'react';
 import SignIn from './components/Login/SignIn';
 import SignUp from './components/Login/SignUp';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import Upload from './components/Upload/Upload';
 import { CookiesProvider } from 'react-cookie';
 
