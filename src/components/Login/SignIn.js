@@ -27,11 +27,12 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" target="_BLANK" href="https://github.com/TatchumNono/lantube-v2">
+        Lantube-v2
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
+      {'.'} <br/>
+      Open Source
     </Typography>
   );
 }
@@ -107,8 +108,11 @@ export default function SignIn() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" align="center">
           Sign in
+          <Typography variant="body2" color="textSecondary" align="center">
+            Lantube is free and always will be!
+          </Typography>
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <TextField
