@@ -4,7 +4,7 @@ When contributing to this repository, please first discuss the change you wish t
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 ## Code of Conduct
-The code of conduct is described in CODE_OF_CONDUCT.md
+The code of conduct is described in [CODE_OF_CONDUCT.md](https://github.com/TatchumNono/lantube-v2/blob/master/CODE_OF_CONDUCT.md)
 
 
 ## What do I need to know to help?
