@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
-import Navbar from '../Navbar/Navbar';
-import NavBarAuth from '../Navbar/NavbarAuth';
-import { UserContext } from '../../contexts/userContext';
+import React from 'react';
+import Nav from '../Navbar/Nav';
+import SubHome from './SubHome';
 
 function Home() {
-  const { cookie } = useContext(UserContext);
-
   return (
     <div>
-      {cookie.isLoggedIn ? <NavBarAuth /> : <Navbar />}
-      <p>Home</p>
+      <Nav />
+      <SubHome />
     </div>
   );
 }

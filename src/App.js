@@ -1,8 +1,9 @@
 import React from 'react';
 import SignIn from './components/Login/SignIn';
-import SignUp from './components/Login/SignUp';
+import SignUp from './components/Login/Signup';
 import Home from './components/Home/Home';
 import Upload from './components/Upload/Upload';
+import Player from './components/Player/Player';
 import { CookiesProvider } from 'react-cookie';
 
 import UserContextProvider from './contexts/userContext';
@@ -20,6 +21,7 @@ function App() {
               <Route path="/SignUp" component={SignUp} />
               <Route path="/SignIn" component={SignIn} />
               <Route path="/Upload" component={Upload} />
+              <Route path="/Player/:id" component={Player} />
             </UserContextProvider>
           </Switch>
         </BrowserRouter>

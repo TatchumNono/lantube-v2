@@ -15,8 +15,6 @@ function UserContextProvider(props) {
     removeCookies('userData');
   };
 
-  console.log(cookies.userData);
-
   return (
     <div>
       <UserContext.Provider
