@@ -11,7 +11,6 @@ export default function Upload() {
       {!cookie.isLoggedIn ? (
         <div>
           <SimpleModal />
-          <p>Login first</p>
         </div>
       ) : (
         <div>

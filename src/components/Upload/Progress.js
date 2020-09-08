@@ -18,16 +18,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
   },
   paper: {
+    width: 400,
+    position: 'absolute',
     backgroundColor: theme.palette.background.paper,
-    //boxShadow: theme.shadows[1],
-    padding: theme.spacing(4, 4, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backdropFilter: 'grey',
+    borderRadius: '2px',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
   root: {
     width: '100%',
+  },
+  flex: {
+    display: 'flex',
+    lignItems: 'center',
+    justifyContent: 'center',
   },
 }));
 
@@ -77,11 +81,13 @@ export default function TransModal(props) {
               {props.progressValue !== 100 ? (
                 <LinearProgressWithLabel value={props.progressValue} />
               ) : (
-                <img
-                  src={logo}
-                  alt="haha"
-                  style={{ width: '2%', height: '2%' }}
-                />
+                <div className={classes.flex}>
+                  <img
+                    src={logo}
+                    alt="haha"
+                    style={{ width: '45%', height: '40%' }}
+                  />
+                </div>
               )}
             </div>
           </div>

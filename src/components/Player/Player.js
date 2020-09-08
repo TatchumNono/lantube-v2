@@ -13,6 +13,8 @@ export default function Player(props) {
       .then((res) => {
         console.log(res.data);
         setInfo(res.data.file[0]);
+        let fileTitle = res.data.file[0].filename;
+        document.title = `${fileTitle}`;
       })
       .catch((error) => {
         console.log(error);

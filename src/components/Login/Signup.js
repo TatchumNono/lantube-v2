@@ -51,18 +51,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant='body2' color='textSecondary' align='center'>
       {"Copyright © "}
-      <Link color="inherit" target="_BLANK" href="https://github.com/TatchumNono/lantube-v2">
+      <Link
+        color='inherit'
+        target='_BLANK'
+        href='https://github.com/TatchumNono/lantube-v2'>
         Lantube-v2
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}<br/>
+      {"."}
+      <br />
       Open Source
     </Typography>
   );
@@ -159,17 +163,17 @@ function SignUp() {
     }
   };
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Sign up
         </Typography>
         {/*<Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>*/}
         <Box mt={8}>
-          <Typography component="p" variant="body1">
+          <Typography component='p' variant='body1'>
             Choose a profile picture
           </Typography>
           <br />
@@ -184,16 +188,16 @@ function SignUp() {
 
         <form onSubmit={onSignUp} className={classes.form} noValidate>
           <div className={classes.av}>
-            <Avatar1 src={preview} alt="Preview" className={classes.avatar} />
+            <Avatar1 src={preview} alt='Preview' className={classes.avatar} />
           </div>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            id="username"
-            label="Username"
-            name="username"
+            id='username'
+            label='Username'
+            name='username'
             autoFocus
             value={username}
             onChange={(e) => {
@@ -202,13 +206,13 @@ function SignUp() {
           />
 
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            id="username"
-            label="Name"
-            name="name"
+            id='username'
+            label='Name'
+            name='name'
             autoFocus
             value={name}
             onChange={(e) => {
@@ -216,26 +220,26 @@ function SignUp() {
             }}
           />
 
-          <FormControl className={classes.form} required variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
+          <FormControl className={classes.form} required variant='outlined'>
+            <InputLabel htmlFor='outlined-adornment-password'>
               Password
             </InputLabel>
             <OutlinedInput
               fullWidth
               required
-              id="outlined-adornment-password"
+              id='outlined-adornment-password'
               type={values ? "text" : "password"}
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
               endAdornment={
-                <InputAdornment position="end">
+                <InputAdornment position='end'>
                   <IconButton
-                    aria-label="toggle password visibility"
+                    aria-label='toggle password visibility'
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
-                    edge="end">
+                    edge='end'>
                     {values ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
@@ -244,26 +248,26 @@ function SignUp() {
             />
           </FormControl>
 
-          <FormControl className={classes.form} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
+          <FormControl className={classes.form} variant='outlined'>
+            <InputLabel htmlFor='outlined-adornment-password'>
               Confirm Password
             </InputLabel>
             <OutlinedInput
               fullWidth
               required
-              id="outlined-adornment-password1"
+              id='outlined-adornment-password1'
               type={values1 ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
               }}
               endAdornment={
-                <InputAdornment position="end">
+                <InputAdornment position='end'>
                   <IconButton
-                    aria-label="toggle password visibility"
+                    aria-label='toggle password visibility'
                     onClick={handleClickShowConfirmPassword}
                     onMouseDown={handleMouseDownPassword}
-                    edge="end">
+                    edge='end'>
                     {values1 ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
@@ -279,16 +283,16 @@ function SignUp() {
           */}
 
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}>
             Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="/SignIn" variant="body2">
+              <Link href='/SignIn' variant='body2'>
                 Login
               </Link>
             </Grid>
@@ -298,7 +302,7 @@ function SignUp() {
           open={openSuccess}
           autoHideDuration={6000}
           onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success">
+          <Alert onClose={handleClose} severity='success'>
             {responses.success}
           </Alert>
         </Snackbar>
@@ -306,7 +310,7 @@ function SignUp() {
           open={openFailure}
           autoHideDuration={6000}
           onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error">
+          <Alert onClose={handleClose} severity='error'>
             {responses.error}
           </Alert>
         </Snackbar>

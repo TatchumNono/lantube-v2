@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Typography } from '@material-ui/core';
+import React, { useContext, useEffect, useState } from 'react';
+import { Typography } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-//import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/lab/Skeleton';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Chats from '../chat/Chats';
+import { UserContext } from '../../contexts/userContext';
+
 //import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    margin: 0,
+    padding: theme.spacing(1),
   },
   paper: {
     padding: theme.spacing(2),
@@ -91,12 +96,16 @@ const useStyles = makeStyles((theme) => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
+  flex: {},
 }));
 
 export default function SubHome() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
+
+  const { isLoggedIn } = useContext(UserContext);
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -116,24 +125,21 @@ export default function SubHome() {
 
   const Media = () => {
     return (
-      <Grid container wrap="wrap" spacing={5}>
+      <Grid container spacing={1}>
         {content.map((item) => (
-          <Box key={item._id} width={300} marginRight={1} my={5}>
-            <div className={classes.root1}>
+          <Grid item xs={3}>
+            <Box key={item._id} width={300} marginRight={1} my={2}>
               <ButtonBase
                 focusRipple
                 key={item._id}
                 className={classes.image}
                 focusVisibleClassName={classes.focusVisible}
-                style={{ width: 320, height: 240 }}
+                style={{ width: 300, height: 200 }}
                 component={Link}
                 to={`/Player/${item._id}`}>
-                <span
-                  className={classes.imageSrc}
-                  style={{
-                    backgroundImage: `url(${item.thumbnail})`,
-                  }}
-                />
+                <span className={classes.imageSrc}>
+                  <img src={item.thumbnail} alt="haha" />
+                </span>
 
                 <span className={classes.imageBackdrop} />
                 <span className={classes.imageButton}>
@@ -147,19 +153,20 @@ export default function SubHome() {
                   </Typography>
                 </span>
               </ButtonBase>
-            </div>
-            <Box pr={2}>
-              <Typography gutterBottom variant="body2">
-                {item.title}
-              </Typography>
-              <Typography
-                display="block"
-                variant="caption"
-                color="textSecondary">
-                {`${item.username} •    ${item.category}`}
-              </Typography>
+
+              <Box pr={2}>
+                <Typography gutterBottom variant="body2">
+                  {item.title}
+                </Typography>
+                <Typography
+                  display="block"
+                  variant="caption"
+                  color="textSecondary">
+                  {`${item.username} •    ${item.category}`}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
+          </Grid>
         ))}
       </Grid>
     );
@@ -167,7 +174,7 @@ export default function SubHome() {
 
   const MediaLoading = () => {
     return (
-      <Grid container wrap="nowrap">
+      <Grid container wrap="wrap">
         {Array.from(new Array(count)).map((index) => (
           <Box key={index} width={210} marginRight={0.5} my={5}>
             <Skeleton variant="rect" width={210} height={118} />
@@ -182,10 +189,18 @@ export default function SubHome() {
   };
 
   return (
-    <Box overflow="hidden">
-      <Container className={classes.root}>
-        {loading ? <MediaLoading /> : <Media />}
-      </Container>
-    </Box>
+    <div className={classes.root}>
+      <CssBaseline />
+      {loading ? (
+        <Grid container spacing={1}>
+          <Grid container item xs={12} spacing={3}>
+            <MediaLoading />
+          </Grid>
+        </Grid>
+      ) : (
+        <Media />
+      )}
+      {isLoggedIn ? <Chats /> : null}
+    </div>
   );
 }
