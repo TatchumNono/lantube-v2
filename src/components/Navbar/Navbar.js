@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar() {
+const NavBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -213,4 +213,6 @@ export default function NavBar() {
       <MenuDrawer open={open} fOpen={toggleDrawer} fClose={toggleDrawer1} />
     </div>
   );
-}
+};
+
+export default NavBar;

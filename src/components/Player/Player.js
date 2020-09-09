@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 import Nav from '../Navbar/Nav';
 
-export default function Player(props) {
+const Player = (props) => {
   const { id } = props.match.params;
   const [info, setInfo] = useState({});
 
@@ -40,4 +40,6 @@ export default function Player(props) {
       />
     </div>
   );
-}
+};
+
+export default Player;

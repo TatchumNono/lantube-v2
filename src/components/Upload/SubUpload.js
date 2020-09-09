@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SubUpload() {
+const SubUpload = () => {
   const classes = useStyles();
   const history = useHistory();
   const [category, setCategory] = useState('');
@@ -194,4 +194,6 @@ export default function SubUpload() {
       />
     </Container>
   );
-}
+};
+
+export default SubUpload;

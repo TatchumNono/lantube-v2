@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal(props) {
+const SimpleModal = (props) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   let history = useHistory();
@@ -74,4 +74,6 @@ export default function SimpleModal(props) {
       </Paper>
     </div>
   );
-}
+};
+
+export default SimpleModal;
