@@ -55,33 +55,11 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-<<<<<<< HEAD
 const SignUp = () => {
   const [username, setUsername] = React.useState('');
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
-=======
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {"Copyright © "}
-      <Link color="inherit" target="_BLANK" href="https://github.com/TatchumNono/lantube-v2">
-        Lantube-v2
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}<br/>
-      Open Source
-    </Typography>
-  );
-}
-
-function SignUp() {
-  const [username, setUsername] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
->>>>>>> a21297cf11c7453bc4d8ede5e8036402b8ddee55
   const [preview, setPreview] = React.useState(null);
   const [values, setValues] = React.useState(false);
   const [values1, setValues1] = React.useState(false);
