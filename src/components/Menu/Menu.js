@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MenuDrawer(props) {
+const MenuDrawer = (props) => {
   const classes = useStyles();
   return (
     <div>
@@ -53,4 +53,6 @@ export default function MenuDrawer(props) {
       </React.Fragment>
     </div>
   );
-}
+};
+
+export default MenuDrawer;

@@ -22,20 +22,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/userContext';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" target="_BLANK" href="https://github.com/TatchumNono/lantube-v2">
-        Lantube-v2
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'} <br/>
-      Open Source
-    </Typography>
-  );
-}
+import Copyright from './Copyright';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -64,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+const SignIn = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [values, setValues] = React.useState(false);
@@ -189,4 +176,6 @@ export default function SignIn() {
       </Box>
     </Container>
   );
-}
+};
+
+export default SignIn;

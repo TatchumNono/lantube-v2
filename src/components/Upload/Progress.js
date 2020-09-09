@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LinearProgressWithLabel(props) {
+const LinearProgressWithLabel = (props) => {
   return (
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1}>
@@ -48,7 +48,7 @@ function LinearProgressWithLabel(props) {
       </Box>
     </Box>
   );
-}
+};
 
 LinearProgressWithLabel.propTypes = {
   /**
@@ -58,7 +58,7 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function TransModal(props) {
+const TransModal = (props) => {
   const classes = useStyles();
 
   return (
@@ -95,4 +95,6 @@ export default function TransModal(props) {
       </Modal>
     </div>
   );
-}
+};
+
+export default TransModal;

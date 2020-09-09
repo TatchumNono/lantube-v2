@@ -4,7 +4,7 @@ import { UserContext } from '../../contexts/userContext';
 import SimpleModal from '../modal/Verification';
 import SubUpload from './SubUpload';
 
-export default function Upload() {
+const Upload = () => {
   const { cookie } = useContext(UserContext);
   return (
     <div>
@@ -20,4 +20,6 @@ export default function Upload() {
       )}
     </div>
   );
-}
+};
+
+export default Upload;

@@ -7,8 +7,8 @@ import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+//import Typography from '@material-ui/core/Typography';
+//import Grid from '@material-ui/core/Grid';
 import './style.css';
 import axios from 'axios';
 

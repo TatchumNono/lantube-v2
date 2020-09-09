@@ -3,7 +3,9 @@ import Navbar from '../Navbar/Navbar';
 import NavBarAuth from '../Navbar/NavbarAuth';
 import { UserContext } from '../../contexts/userContext';
 
-export default function Nav() {
+const Nav = () => {
   const { cookie } = useContext(UserContext);
   return <div>{cookie.isLoggedIn ? <NavBarAuth /> : <Navbar />}</div>;
-}
+};
+
+export default Nav;

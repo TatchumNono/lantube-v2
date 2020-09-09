@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   flex: {},
 }));
 
-export default function SubHome() {
+const SubHome = () => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
@@ -203,4 +203,6 @@ export default function SubHome() {
       {isLoggedIn ? <Chats /> : null}
     </div>
   );
-}
+};
+
+export default SubHome;

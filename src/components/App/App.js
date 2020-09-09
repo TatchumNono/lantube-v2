@@ -1,16 +1,16 @@
 import React from 'react';
-import SignIn from './components/Login/SignIn';
-import SignUp from './components/Login/Signup';
-import Home from './components/Home/Home';
-import Upload from './components/Upload/Upload';
-import Player from './components/Player/Player';
+import SignIn from '../Login/SignIn';
+import SignUp from '../Login/SignUp';
+import Home from '../Home/Home';
+import Upload from '../Upload/Upload';
+import Player from '../Player/Player';
 import { CookiesProvider } from 'react-cookie';
 
-import UserContextProvider from './contexts/userContext';
+import UserContextProvider from '../../contexts/userContext';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
     <div>
       <CookiesProvider>
@@ -28,6 +28,6 @@ function App() {
       </CookiesProvider>
     </div>
   );
-}
+};
 
 export default App;

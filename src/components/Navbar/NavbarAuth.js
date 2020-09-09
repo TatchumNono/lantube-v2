@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBarAuth() {
+const NavBarAuth = () => {
   const { cookies, logOut } = useContext(UserContext);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -221,4 +221,6 @@ export default function NavBarAuth() {
       <MenuDrawer open={open} fOpen={toggleDrawer} fClose={toggleDrawer1} />
     </div>
   );
-}
+};
+
+export default NavBarAuth;
