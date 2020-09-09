@@ -58,15 +58,11 @@ function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {"Copyright © "}
-      <Link
-        color='inherit'
-        target='_BLANK'
-        href='https://github.com/TatchumNono/lantube-v2'>
+      <Link color="inherit" target="_BLANK" href="https://github.com/TatchumNono/lantube-v2">
         Lantube-v2
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
-      <br />
+      {"."}<br/>
       Open Source
     </Typography>
   );
