@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+//import Container from '@material-ui/core/Container';
 import logo from './success2.gif';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,16 +18,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
   },
   paper: {
+    width: 400,
+    position: 'absolute',
     backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[1],
-    padding: theme.spacing(4, 4, 3),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backdropFilter: 'blue',
+    borderRadius: '2px',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
   root: {
     width: '100%',
+  },
+  flex: {
+    display: 'flex',
+    lignItems: 'center',
+    justifyContent: 'center',
   },
 }));
 
@@ -59,36 +63,36 @@ export default function TransModal(props) {
 
   return (
     <div>
-      <Container maxWidth="xs">
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={props.fOpen}
-          onClose={props.fClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}>
-          <Fade in={props.fOpen}>
-            <div className={classes.paper}>
-              <h2 id="transition-modal-title">Uploading... {props.title}</h2>
-              <div className={classes.root}>
-                {props.progressValue === 100 ? (
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={props.fOpen}
+        onClose={props.fClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}>
+        <Fade in={props.fOpen}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">Uploading... {props.title}</h2>
+            <div className={classes.root}>
+              {props.progressValue !== 100 ? (
+                <LinearProgressWithLabel value={props.progressValue} />
+              ) : (
+                <div className={classes.flex}>
                   <img
                     src={logo}
                     alt="haha"
-                    style={{ width: '2%', height: '2%' }}
+                    style={{ width: '45%', height: '40%' }}
                   />
-                ) : (
-                  <LinearProgressWithLabel value={props.progressValue} />
-                )}
-              </div>
+                </div>
+              )}
             </div>
-          </Fade>
-        </Modal>
-      </Container>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 }

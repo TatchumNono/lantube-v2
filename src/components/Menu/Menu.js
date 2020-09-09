@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 
 export default function MenuDrawer(props) {
   const classes = useStyles();
-  console.log(props);
   return (
     <div>
       <React.Fragment>
