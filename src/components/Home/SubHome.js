@@ -127,7 +127,7 @@ const SubHome = () => {
     return (
       <Grid container spacing={1}>
         {content.map((item) => (
-          <Grid item xs={3}>
+          <Grid key={item._id} item xs={3}>
             <Box key={item._id} width={300} marginRight={1} my={2}>
               <ButtonBase
                 focusRipple

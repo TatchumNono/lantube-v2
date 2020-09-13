@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import NavBarAuth from '../Navbar/NavbarAuth';
 import { UserContext } from '../../contexts/userContext';
-import SimpleModal from '../modal/Verification';
+import Verification from '../modal/Verification';
 import SubUpload from './SubUpload';
 
 const Upload = () => {
@@ -10,7 +10,7 @@ const Upload = () => {
     <div>
       {!cookie.isLoggedIn ? (
         <div>
-          <SimpleModal />
+          <Verification />
         </div>
       ) : (
         <div>
