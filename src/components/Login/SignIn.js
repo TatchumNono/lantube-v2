@@ -23,6 +23,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/userContext';
 import Copyright from './Copyright';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = () => {
+  const { t } = useTranslation()
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [values, setValues] = React.useState(false);
@@ -96,9 +98,9 @@ const SignIn = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5" align="center">
-          Sign in
+          {t('signin')}
           <Typography variant="body2" color="textSecondary" align="center">
-            Lantube is free and always will be!
+            {t('freedom-msg')+'!'}
           </Typography>
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
@@ -108,7 +110,7 @@ const SignIn = () => {
             required
             fullWidth
             id="username"
-            label="Username"
+            label={t('username-label')}
             name="username"
             autoFocus
             value={username}
@@ -119,7 +121,7 @@ const SignIn = () => {
 
           <FormControl className={classes.form} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
-              Password
+              {t('password-label')}
             </InputLabel>
             <OutlinedInput
               fullWidth
@@ -147,7 +149,7 @@ const SignIn = () => {
 
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label={t('cookie-req')}
           />
           <Button
             type="submit"
@@ -155,17 +157,17 @@ const SignIn = () => {
             variant="contained"
             color="primary"
             className={classes.submit}>
-            Sign In
+            {t('signin')}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="/" variant="body2">
-                Home
+                {t('home')}
               </Link>
             </Grid>
             <Grid item>
               <Link href="/SignUp" variant="body2">
-                {"Don't have an account? Sign Up"}
+            {t('non-members-msg')+'?'+t('signup')}
               </Link>
             </Grid>
           </Grid>

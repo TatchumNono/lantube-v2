@@ -15,6 +15,7 @@ import { useHistory } from 'react-router-dom';
 import TransModal from './Progress';
 import axios from 'axios';
 import './style.css';
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,7 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SubUpload = () => {
+const SubUpload = ({ categories }) => {
+  const { t } = useTranslation()
   const classes = useStyles();
   const history = useHistory();
   const [category, setCategory] = useState('');
@@ -52,7 +54,6 @@ const SubUpload = () => {
   const [token, setToken] = useState('');
   const [buttonS, setButton] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [comment, setComment] = useState('Click here select a file!');
   const [openProgressModal, setOpenProgressModal] = useState(false);
 
   const handleProgressModalClose = () => {
@@ -62,7 +63,6 @@ const SubUpload = () => {
   const onDrop = (e) => {
     setFile(e.target.files[0]);
     setTitle(e.target.files[0].name);
-    setComment(e.target.files[0].name);
     setToken(cookies.userData.token);
   };
 
@@ -119,7 +119,7 @@ const SubUpload = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Upload
+          {t('upload')}
         </Typography>
         <Grid container justify="center" alignItems="center">
           <Grid item xs={12}>
@@ -136,13 +136,13 @@ const SubUpload = () => {
                   onChange={onDrop}
                   required
                 />
-                <div className="helper-text">{comment}</div>
+                <div className="helper-text">{t('file-req-msg')}</div>
               </div>
               <br />
               <TextField
                 //id="standard-basic"
                 variant="outlined"
-                label="Title"
+                label={t("title")}
                 margin="normal"
                 required
                 fullWidth
@@ -154,7 +154,7 @@ const SubUpload = () => {
               <br />
               <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="demo-simple-select-outlined-label">
-                  Category
+                  {t('category')}
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-outlined-label"
@@ -164,13 +164,12 @@ const SubUpload = () => {
                     setCategory(e.target.value);
                   }}
                   label="Category">
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value="Film">Film</MenuItem>
-                  <MenuItem value="Music">Music</MenuItem>
-                  <MenuItem value="Tutorial">Tutorial</MenuItem>
-                  <MenuItem value="Other">Other</MenuItem>
+                    {
+                      categories.map((value,index)=>{
+                        return <MenuItem value={value} key={index}>{t(value)}</MenuItem>
+                      })
+
+                    }
                 </Select>
               </FormControl>
               <Button
@@ -180,7 +179,7 @@ const SubUpload = () => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}>
-                Upload
+                {t('upload')}
               </Button>
             </form>
           </Grid>

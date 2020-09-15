@@ -23,6 +23,8 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Copyright from './Copyright';
+import { useTranslation } from 'react-i18next';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -56,6 +58,7 @@ function Alert(props) {
 }
 
 const SignUp = () => {
+  const { t } = useTranslation()
   const [username, setUsername] = React.useState('');
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -150,14 +153,14 @@ const SignUp = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Sign up
+          {t('signup')}
         </Typography>
         {/*<Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>*/}
         <Box mt={8}>
           <Typography component="p" variant="body1">
-            Choose a profile picture
+            {t('choose a profile picture')}
           </Typography>
           <br />
           <Avatar
@@ -166,6 +169,7 @@ const SignUp = () => {
             onCrop={onCrop}
             onClose={onClose}
             onBeforeFileLoad={onBeforeFileLoad}
+            label={t('choose a file')}
           />
         </Box>
 
@@ -179,7 +183,7 @@ const SignUp = () => {
             required
             fullWidth
             id="username"
-            label="Username"
+            label={t("username-label")}
             name="username"
             autoFocus
             value={username}
@@ -194,7 +198,7 @@ const SignUp = () => {
             required
             fullWidth
             id="username"
-            label="Name"
+            label={t("name")}
             name="name"
             autoFocus
             value={name}
@@ -205,7 +209,7 @@ const SignUp = () => {
 
           <FormControl className={classes.form} required variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
-              Password
+            {t("password-label")}
             </InputLabel>
             <OutlinedInput
               fullWidth
@@ -233,7 +237,7 @@ const SignUp = () => {
 
           <FormControl className={classes.form} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
-              Confirm Password
+              {t("confirm password")}
             </InputLabel>
             <OutlinedInput
               fullWidth
@@ -271,12 +275,12 @@ const SignUp = () => {
             variant="contained"
             color="primary"
             className={classes.submit}>
-            Sign In
+            {t("signin")}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="/SignIn" variant="body2">
-                Login
+                {t("login")}
               </Link>
             </Grid>
           </Grid>

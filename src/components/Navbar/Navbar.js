@@ -17,6 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import MenuDrawer from '../Menu/Menu';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -83,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
+  const { t } = useTranslation()
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -153,7 +155,7 @@ const NavBar = () => {
           color="inherit">
           <AccountCircle />
         </IconButton>
-        <p>Login</p>
+        <p>{t('login')}</p>
       </MenuItem>
     </Menu>
   );
@@ -178,12 +180,12 @@ const NavBar = () => {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder={t('search')+'...'}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ 'aria-label': t('search') }}
             />
           </div>
           <div className={classes.grow} />
@@ -193,7 +195,7 @@ const NavBar = () => {
                 goTo.push('/SignIn');
               }}
               color="inherit">
-              Login
+              {t('login')}
             </Button>
           </div>
           <div className={classes.sectionMobile}>

@@ -1,0 +1,25 @@
+{
+    "non-members-msg": "Don't have an account",
+    "password-label": "Password",
+    "username-label": "Username",
+    "cookie-req" : "Remember me",
+    "freedom-msg": "Lantube is free and always will be",
+    "signin": "Signin",
+    "login": "Login",
+    "copyright": "Copyright",
+    "upload": "Upload",
+    "home": "Home",
+    "choose a file": "Choose a file",
+    "choose a profile picture": "Choose a profile picture",
+    "confirm password": "Confirm password",
+    "name": "Name",
+    "signup": "Sign Up",
+    "search": "Search",
+    "category": "Category",
+    "tutorial": "Tutorial",
+    "music": "Music",
+    "other":"Other",
+    "title": "Title",
+    "file-req-msg": "Click here select a file"
+
+}
