@@ -39,7 +39,7 @@ const MenuDrawer = (props) => {
               {t('language')}: <LanguageSwitcher />
             </div>
             <List>
-              <ListItem button component={Link} to="/">
+              <ListItem button component={Link} to="/" onClick={props.fClose}>
                 <ListItemIcon>
                   <HomeIcon /> {t('home')}
                 </ListItemIcon>
@@ -48,7 +48,7 @@ const MenuDrawer = (props) => {
             </List>
             <Divider />
             <List>
-              <ListItem button component={Link} to="/Upload">
+              <ListItem button component={Link} to="/Upload" onClick={props.fClose}>
                 <ListItemIcon>
                   <FolderIcon /> {t('upload')}
                 </ListItemIcon>

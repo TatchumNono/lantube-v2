@@ -100,7 +100,7 @@ const NavBar = () => {
   };
 
   const toggleDrawer1 = () => {
-    setOpen(false);
+    return setOpen(false);
   };
 
   //const handleProfileMenuOpen = (event) => {

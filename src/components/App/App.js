@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 import Upload from '../Upload/Upload';
 import Player from '../Player/Player';
 import { CookiesProvider } from 'react-cookie';
+import Nav from '../Navbar/Nav';
 
 import UserContextProvider from '../../contexts/userContext';
 
@@ -17,6 +18,7 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <UserContextProvider>
+              <Nav />
               <Route exact path="/" component={Home} />
               <Route path="/SignUp" component={SignUp} />
               <Route path="/SignIn" component={SignIn} />
