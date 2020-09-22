@@ -20,6 +20,6 @@
     "music": "Music",
     "other":"Other",
     "title": "Title",
-    "file-req-msg": "Click here select a file"
-
+    "file-req-msg": "Click here select a file",
+    "language": "Language"
 }

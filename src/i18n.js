@@ -19,14 +19,16 @@ i18n
   .init({
     debug:true,
     resources,
-    lng: "fr",
+    lng: "en",
+    whitelist: ['en', 'fr'],
     fallbackLng: 'fr',
+    nonExplicitSupportedLngs:true,
 
-    keySeparator: true, // we do not use keys in form messages.welcome
+    keySeparator: false, // we do not use keys in form messages.welcome
 
     interpolation: {
       escapeValue: false // react already safes from xss
-    }
+    },
   });
 
   export default i18n;

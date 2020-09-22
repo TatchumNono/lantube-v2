@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import MenuDrawer from '../Menu/Menu';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../Utils/LanguageSwitcher'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -188,6 +189,9 @@ const NavBar = () => {
               inputProps={{ 'aria-label': t('search') }}
             />
           </div>
+          <div className={classes.sectionDesktop}>
+            <LanguageSwitcher />
+          </div>     
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button

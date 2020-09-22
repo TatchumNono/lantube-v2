@@ -1,5 +1,4 @@
-import React, { useContext,useState } from 'react';
-import NavBarAuth from '../Navbar/NavbarAuth';
+import React, { useContext } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import SimpleModal from '../modal/Verification';
 import SubUpload from './SubUpload';

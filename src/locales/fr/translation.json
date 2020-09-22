@@ -20,5 +20,6 @@
     "music": "La musique",
     "other":"Autre",
     "title": "Titre",
-    "file-req-msg": "Sélectionnez le fichier"
+    "file-req-msg": "Sélectionnez le fichier",
+    "language": "Langue"
 }

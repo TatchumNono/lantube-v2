@@ -163,7 +163,7 @@ const SubUpload = ({ categories }) => {
                   onChange={(e) => {
                     setCategory(e.target.value);
                   }}
-                  label="Category">
+                  label="Category"> 
                     {
                       categories.map((value,index)=>{
                         return <MenuItem value={value} key={index}>{t(value)}</MenuItem>

@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.langDrawer{
+  display: none;
+}
+@media(max-width: 908px){
+  .title{
+    padding-left: 15%;
+  }
+  .langDrawer{
+    margin-left: 22%;
+    margin-top: 4%;
+    margin-bottom: 30px;
+    display: block;
+  }
+}

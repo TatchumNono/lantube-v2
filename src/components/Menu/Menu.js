@@ -11,6 +11,7 @@ import HomeIcon from '@material-ui/icons/MoveToInbox';
 import { Link } from 'react-router-dom';
 import FolderIcon from '@material-ui/icons/Mail';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../Utils/LanguageSwitcher'
 
 
 const useStyles = makeStyles({
@@ -34,6 +35,9 @@ const MenuDrawer = (props) => {
           onOpen={props.fOpen}
           onClose={props.fClose}>
           <div className={clsx(classes.list)} role="presentation">
+            <div className="langDrawer">
+              {t('language')}: <LanguageSwitcher />
+            </div>
             <List>
               <ListItem button component={Link} to="/">
                 <ListItemIcon>
