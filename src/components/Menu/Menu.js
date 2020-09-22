@@ -7,9 +7,12 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import HomeIcon from '@material-ui/icons/MoveToInbox';
 import { Link } from 'react-router-dom';
-import MailIcon from '@material-ui/icons/Mail';
+import FolderIcon from '@material-ui/icons/Mail';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../Utils/LanguageSwitcher'
+
 
 const useStyles = makeStyles({
   list: {
@@ -21,6 +24,7 @@ const useStyles = makeStyles({
 });
 
 const MenuDrawer = (props) => {
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div>
@@ -31,10 +35,13 @@ const MenuDrawer = (props) => {
           onOpen={props.fOpen}
           onClose={props.fClose}>
           <div className={clsx(classes.list)} role="presentation">
+            <div className="langDrawer">
+              {t('language')}: <LanguageSwitcher />
+            </div>
             <List>
               <ListItem button component={Link} to="/">
                 <ListItemIcon>
-                  <InboxIcon /> Home
+                  <HomeIcon /> {t('home')}
                 </ListItemIcon>
                 <ListItemText />
               </ListItem>
@@ -43,7 +50,7 @@ const MenuDrawer = (props) => {
             <List>
               <ListItem button component={Link} to="/Upload">
                 <ListItemIcon>
-                  <MailIcon /> Upload
+                  <FolderIcon /> {t('upload')}
                 </ListItemIcon>
                 <ListItemText />
               </ListItem>
