@@ -32,7 +32,7 @@ const MenuDrawer = (props) => {
           onClose={props.fClose}>
           <div className={clsx(classes.list)} role="presentation">
             <List>
-              <ListItem button component={Link} to="/">
+              <ListItem button component={Link} to="/" onClick={props.fClose}>
                 <ListItemIcon>
                   <InboxIcon /> Home
                 </ListItemIcon>
@@ -41,7 +41,7 @@ const MenuDrawer = (props) => {
             </List>
             <Divider />
             <List>
-              <ListItem button component={Link} to="/Upload">
+              <ListItem button component={Link} to="/Upload" onClick={props.fClose}>
                 <ListItemIcon>
                   <MailIcon /> Upload
                 </ListItemIcon>
