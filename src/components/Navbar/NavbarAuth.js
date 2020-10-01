@@ -4,15 +4,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Avatar from '@material-ui/core/Avatar';
 import { UserContext } from '../../contexts/userContext';
 import MenuDrawer from '../Menu/Menu';
+import Search from './Search';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -175,19 +174,7 @@ const NavBarAuth = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             LanTube
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+          <Search />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
@@ -199,7 +186,7 @@ const NavBarAuth = () => {
               color="inherit">
               <Avatar
                 alt="P"
-                src={cookies.userData.user[0].profileImage}
+                src={`http://localhost:4000/${cookies.userData.user[0].profileImage}`}
                 //className={classes.large}
               />
             </IconButton>

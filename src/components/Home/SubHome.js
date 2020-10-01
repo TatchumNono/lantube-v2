@@ -127,7 +127,7 @@ const SubHome = () => {
     return (
       <Grid container spacing={1}>
         {content.map((item) => (
-          <Grid item xs={3}>
+          <Grid key={item._id} item xs={3}>
             <Box key={item._id} width={300} marginRight={1} my={2}>
               <ButtonBase
                 focusRipple
@@ -138,7 +138,10 @@ const SubHome = () => {
                 component={Link}
                 to={`/Player/${item._id}`}>
                 <span className={classes.imageSrc}>
-                  <img src={item.thumbnail} alt="haha" />
+                  <img
+                    src={`http://localhost:4000/${item.thumbnail}`}
+                    alt="haha"
+                  />
                 </span>
 
                 <span className={classes.imageBackdrop} />
@@ -162,7 +165,7 @@ const SubHome = () => {
                   display="block"
                   variant="caption"
                   color="textSecondary">
-                  {`${item.username} •    ${item.category}`}
+                  {`${item.username}    •   ${item.category}`}
                 </Typography>
               </Box>
             </Box>

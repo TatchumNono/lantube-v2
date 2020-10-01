@@ -25,7 +25,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Copyright from './Copyright';
 import { useTranslation } from 'react-i18next';
 
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -53,10 +52,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 const SignUp = () => {
   const { t } = useTranslation()
   const [username, setUsername] = React.useState('');
@@ -71,6 +66,11 @@ const SignUp = () => {
   const [responses, setResponses] = React.useState({ success: '', error: '' });
 
   const redirect = useHistory();
+
+  const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  };
+
 
   const onClose = () => {
     setPreview(null);
@@ -128,26 +128,26 @@ const SignUp = () => {
       profileImage: preview,
     };
 
-    if (confirmPassword !== password) {
-      alert('The password does not match');
-    } else {
-      axios
-        .post('http://localhost:4000/user/signup', user)
-        .then((res) => {
-          console.log(res.data);
-          setResponses({ success: res.data.message });
-          setOpenSuccess(true);
-          setTimeout(() => {
-            redirect.push('/');
-          }, 2000);
-        })
-        .catch((error) => {
-          console.log(error.message);
-          setOpenFailure(true);
-          setResponses({ error: error.message });
-        });
-    }
+    confirmPassword !== password
+      ? alert('The password does not match')
+      : axios
+          .post('http://localhost:4000/user/signup', user)
+          .then((res) => {
+            console.log(res.data);
+            setResponses({ success: res.data.message });
+            setOpenSuccess(true);
+            setTimeout(() => {
+              redirect.push('/');
+            }, 2000);
+          })
+          .catch((error) => {
+            console.log(error.message);
+            setOpenFailure(true);
+            setResponses({ error: error.message });
+          });
   };
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -285,6 +285,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </form>
+
         <Snackbar
           open={openSuccess}
           autoHideDuration={6000}
@@ -293,6 +294,7 @@ const SignUp = () => {
             {responses.success}
           </Alert>
         </Snackbar>
+
         <Snackbar
           open={openFailure}
           autoHideDuration={6000}

@@ -4,12 +4,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 //import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
 //import MailIcon from '@material-ui/icons/Mail';
 //import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -17,8 +16,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import MenuDrawer from '../Menu/Menu';
+
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../Utils/LanguageSwitcher'
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -90,6 +91,7 @@ const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+
   const goTo = useHistory();
 
   const isMenuOpen = Boolean(anchorEl);
@@ -176,6 +178,7 @@ const NavBar = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             LanTube
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -192,6 +195,7 @@ const NavBar = () => {
           <div className={classes.sectionDesktop}>
             <LanguageSwitcher />
           </div>     
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button

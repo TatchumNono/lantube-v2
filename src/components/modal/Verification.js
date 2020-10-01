@@ -4,21 +4,6 @@ import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -35,7 +20,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = (props) => {
+const Verification = (props) => {
+  const rand = () => {
+    return Math.round(Math.random() * 20) - 10;
+  };
+
+  const getModalStyle = () => {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  };
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   let history = useHistory();
@@ -44,7 +43,7 @@ const SimpleModal = (props) => {
       <Paper style={modalStyle} className={classes.paper}>
         <p>
           It appears you are not logged in please loggin first or create an
-          account
+          account, You need an account to be able to upload files.
         </p>
         <div className={classes.root}>
           <Button
@@ -76,4 +75,4 @@ const SimpleModal = (props) => {
   );
 };
 
-export default SimpleModal;
+export default Verification;
