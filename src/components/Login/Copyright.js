@@ -1,11 +1,13 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { useTranslation } from 'react-i18next';
 
 const Copyright = () => {
+  const { t } = useTranslation()
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {t('copyright')+'©'}
       <Link
         color="inherit"
         target="_BLANK"

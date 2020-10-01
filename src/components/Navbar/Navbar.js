@@ -16,8 +16,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import MenuDrawer from '../Menu/Menu';
-import Search from './Search';
-//import axios from 'axios';
+
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../Utils/LanguageSwitcher'
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -84,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
+  const { t } = useTranslation()
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -155,7 +158,7 @@ const NavBar = () => {
           color="inherit">
           <AccountCircle />
         </IconButton>
-        <p>Login</p>
+        <p>{t('login')}</p>
       </MenuItem>
     </Menu>
   );
@@ -175,7 +178,24 @@ const NavBar = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             LanTube
           </Typography>
-          <Search />
+
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder={t('search')+'...'}
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': t('search') }}
+            />
+          </div>
+          <div className={classes.sectionDesktop}>
+            <LanguageSwitcher />
+          </div>     
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button
@@ -183,7 +203,7 @@ const NavBar = () => {
                 goTo.push('/SignIn');
               }}
               color="inherit">
-              Login
+              {t('login')}
             </Button>
           </div>
           <div className={classes.sectionMobile}>
