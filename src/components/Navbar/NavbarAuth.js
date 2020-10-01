@@ -186,7 +186,7 @@ const NavBarAuth = () => {
               color="inherit">
               <Avatar
                 alt="P"
-                src={cookies.userData.user[0].profileImage}
+                src={`http://localhost:4000/${cookies.userData.user[0].profileImage}`}
                 //className={classes.large}
               />
             </IconButton>

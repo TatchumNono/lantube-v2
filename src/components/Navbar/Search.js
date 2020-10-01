@@ -7,12 +7,14 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     float: 'inherit',
+    margin: '3px',
   },
   search: {
     position: 'relative',
@@ -58,6 +60,11 @@ const Search = () => {
   const [results, setResult] = useState([]);
   const classes = useStyles();
 
+  const handleClickAway = () => {
+    setResult([]);
+    setQuery('');
+  };
+
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
   };
@@ -102,24 +109,29 @@ const Search = () => {
 
   return (
     <div>
-      <div className={classes.search}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
+      <ClickAwayListener
+        mouseEvent="onMouseDown"
+        touchEvent="onTouchStart"
+        onClickAway={handleClickAway}>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            name="query"
+            placeholder="Search…"
+            onChange={handleQueryChange}
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+          <Paper className={classes.grow}>
+            <ResultDisplay />
+          </Paper>
         </div>
-        <InputBase
-          name="query"
-          placeholder="Search…"
-          onChange={handleQueryChange}
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-        <Paper className={classes.grow}>
-          <ResultDisplay />
-        </Paper>
-      </div>
+      </ClickAwayListener>
     </div>
   );
 };
